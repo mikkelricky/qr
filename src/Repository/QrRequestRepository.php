@@ -2,17 +2,17 @@
 
 namespace App\Repository;
 
-use App\Entity\Qr;
+use App\Entity\QrRequest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Qr>
+ * @extends ServiceEntityRepository<QrRequest>
  */
-class QrRepository extends ServiceEntityRepository
+class QrRequestRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Qr::class);
+        parent::__construct($registry, QrRequest::class);
     }
 }
