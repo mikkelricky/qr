@@ -1,0 +1,22 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% extends '@!EasyAdmin/crud/detail.html.twig' %}
+
+{% block main %}
+    {{ parent() }}
+
+    <fieldset>
+        {% set url = url('app_qr_show', {id: entity.instance.id}) %}
+        <div class="d-flex flex-row mb-3">
+        {% for builder in ['default', 'custom'] %}
+            <div class="text-center">
+                <a href="{{ url }}">
+                    <img src="{{ qr_code_path(url, builder) }}" alt="{{ '#QR code for %url%'|trans({url: url}) }}"/>
+                </a>
+                <br>
+                <a class="btn btn-primary" href="#">{{ 'Download'|trans }}</a>
+            </div>
+        {% endfor %}
+        </div>
+    </fieldset>
+{% endblock %}
