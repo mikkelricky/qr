@@ -8,6 +8,9 @@ doctrine:
 
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
+
+        # Ignore ext tables.
+        schema_filter: ~^(?!ext_)~
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
@@ -22,12 +25,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
-            # gedmo_loggable:
-            #     type: attribute
-            #     prefix: Gedmo\Loggable\Entity
-            #     dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity"
-            #     alias: GedmoLoggable # (optional) it will default to the name set for the mapping
-            #     is_bundle: false
+            gedmo_loggable:
+                type: attribute
+                prefix: Gedmo\Loggable\Entity
+                dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity"
+                alias: GedmoLoggable # (optional) it will default to the name set for the mapping
+                is_bundle: false
         controller_resolver:
             auto_mapping: true
 

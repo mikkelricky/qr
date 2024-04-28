@@ -4,13 +4,16 @@ namespace App\Entity;
 
 use App\Repository\QrRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Loggable\Loggable;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: QrRepository::class)]
 #[ORM\Table(name: 'qr_qr')]
-class Qr
+#[Gedmo\Loggable(logEntryClass: LogEntry::class)]
+class Qr implements Loggable
 {
     use TimestampableEntity;
 
@@ -21,9 +24,11 @@ class Qr
     private ?Uuid $id;
 
     #[ORM\Column(length: 255)]
+    #[Gedmo\Versioned]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Gedmo\Versioned]
     private ?string $url = null;
 
     public function getId(): ?Uuid
